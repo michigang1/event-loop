@@ -1,6 +1,7 @@
 package painter
 
 import (
+	"image"
 	"image/color"
 
 	"golang.org/x/exp/shiny/screen"
@@ -45,4 +46,31 @@ func WhiteFill(t screen.Texture) {
 // GreenFill зафарбовує тестуру у зелений колір. Може бути викоистана як Operation через OperationFunc(GreenFill).
 func GreenFill(t screen.Texture) {
 	t.Fill(t.Bounds(), color.RGBA{G: 0xff, A: 0xff}, screen.Src)
+}
+
+// BgRect малює прямокутник по координатам лівого верхнього та правого нижнього кута.
+func BgRect(x1, y1, x2, y2 int) OperationFunc {
+	return func(t screen.Texture) {
+		t.Fill(image.Rect(x1, y1, x2, y2), color.Black, screen.Src)
+	}
+}
+
+// Структура, яка представляє фігуру варіанту
+type Figure struct {
+	X int
+	Y int
+}
+
+// DrawFigure повертає Operation, яка малює фігуру варіанту по координатам центру
+func (f *Figure) DrawFigure() OperationFunc {
+	return func(t screen.Texture) {
+		t.Fill(image.Rect(f.X-100, f.Y+50, f.X+100, f.Y-50), color.RGBA{R: 219, G: 208, B: 48, A: 1}, screen.Src)
+		t.Fill(image.Rect(f.X-50, f.Y-100, f.X+50, f.Y+100), color.RGBA{R: 219, G: 208, B: 48, A: 1}, screen.Src)
+	}
+}
+
+// MoveFigure змінює координати центру фігури
+func (f *Figure) MoveFigure(x, y int) {
+	f.X += x
+	f.Y += y
 }

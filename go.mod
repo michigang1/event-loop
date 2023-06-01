@@ -3,7 +3,6 @@ module github.com/michigang1/event-loop
 go 1.20
 
 require (
-	github.com/roman-mazur/architecture-lab-3 v0.0.0-20230408205240-3c3ec0515185
 	golang.org/x/exp/shiny v0.0.0-20230321023759-10a507213a29
 	golang.org/x/image v0.7.0
 	golang.org/x/mobile v0.0.0-20201217150744-e6ae53a27f4f
