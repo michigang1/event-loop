@@ -45,12 +45,13 @@ func (p *Parser) Parse(in io.Reader) ([]painter.Operation, error) {
 				p.BgColor = painter.OperationFunc(painter.GreenFill)
 
 			case "update":
-				if p.Rect != nil {
-					res = append(res, p.Rect)
-				}
 
 				if p.BgColor != nil {
 					res = append(res, p.BgColor)
+				}
+
+				if p.Rect != nil {
+					res = append(res, p.Rect)
 				}
 
 				for ind, figureInstance := range p.Figures {
