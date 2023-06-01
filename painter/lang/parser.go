@@ -4,12 +4,13 @@ import (
 	"bufio"
 	"errors"
 	"fmt"
-	"github.com/michigang1/event-loop/painter"
-	"golang.org/x/exp/shiny/screen"
 	"image/color"
 	"io"
 	"strconv"
 	"strings"
+
+	"github.com/michigang1/event-loop/painter"
+	"golang.org/x/exp/shiny/screen"
 )
 
 // Parser уміє прочитати дані з вхідного io.Reader та повернути список операцій представлені вхідним скриптом.
@@ -121,7 +122,7 @@ func (p *Parser) Parse(in io.Reader) ([]painter.Operation, error) {
 
 			case "reset":
 				p.BgColor = painter.OperationFunc(func(t screen.Texture) {
-					t.Fill(t.Bounds(), color.Black, screen.Src)
+					t.Fill(t.Bounds(), color.White, screen.Src)
 				})
 				p.Rect = painter.BgRect(0, 0, 0, 0)
 				p.Figures = nil
